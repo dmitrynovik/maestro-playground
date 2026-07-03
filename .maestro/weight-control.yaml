@@ -22,10 +22,11 @@ appId: com.maestro.playground
 - launchApp
 
 # The Weight Control page is the home/launch page — no navigation needed.
-# Wait for the Blazor content to load inside the WebView2 control.
-- waitForAnimationToEnd:
-    timeout: 5000
-- assertVisible: "Weight Control"
+# .NET MAUI cold starts (Mono JIT + WebView/Blazor bootstrap) can take well
+# over 5s on an emulator, so poll instead of using a single fixed wait.
+- extendedWaitUntil:
+    visible: "Weight Control"
+    timeout: 30000
 
 # --- Test 1: Weight On sets the value to 5 ---
 - tapOn: "Weight On"

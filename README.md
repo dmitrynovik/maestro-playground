@@ -1,0 +1,1 @@
+A PoC of Maestro test targeting a MAUI app on Android
