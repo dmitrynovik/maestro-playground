@@ -13,7 +13,8 @@
 #   dotnet build -f net10.0-windows10.0.19041.0
 # Run with auto-launch (default below):
 #   maestro test .maestro/weight-control.yaml
-appId: C:\Git\maestro-playground\bin\Debug\net10.0-windows10.0.19041.0\win-x64\MaestroPlayground.exe
+appId: C:\Git\maestro-playground\bin\Debug\net10.0-android\com.maestro.playground.apk # Android
+#appId: C:\Git\maestro-playground\bin\Debug\net10.0-windows10.0.19041.0\win-x64\MaestroPlayground.exe # Windows
 ---
 # Weight Control UI Tests
 #
@@ -36,7 +37,7 @@ appId: C:\Git\maestro-playground\bin\Debug\net10.0-windows10.0.19041.0\win-x64\M
 # The read-only input (id="weightInput") now shows "5".
 - assertVisible: "5"
 
-# --- Test 2: Weight Off resets the value to 0 ---
+# --- Test 2: Weight Off resets the value to 0 ---dotnet 
 - tapOn: "Weight Off"
 - waitForAnimationToEnd:
     timeout: 2000
