@@ -1,6 +1,0 @@
-# Maestro workspace configuration
-# Docs: https://maestro.mobile.dev/getting-started/workspace-configuration
-
-# Default flow execution order when running `maestro test .maestro/`
-flows:
-  - weight-control.yaml

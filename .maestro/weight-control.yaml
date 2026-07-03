@@ -1,19 +1,18 @@
-# appId for a Windows unpackaged MAUI app.
-# Maestro uses the full exe path to launch the app, or the process name to
-# attach to an already-running instance.
+# appId for the MAUI app.
 #
-# Two modes of use:
-#   Auto-launch (recommended): set appId to the full exe path below.
-#     Maestro will start the app before running the flow.
-#   Attach to running app: change appId to just "MaestroPlayground" (process
-#     name without .exe) and start the app manually first, then run:
-#       maestro test .maestro/weight-control.yaml
+# On Android, appId must be the app's package name (ApplicationId in the
+# .csproj), not a file path. Maestro installs/launches the APK on the
+# connected emulator/device by this id.
 #
-# Build the app first:
-#   dotnet build -f net10.0-windows10.0.19041.0
-# Run with auto-launch (default below):
+# On Windows, Maestro instead expects the full exe path, or the bare process
+# name (without .exe) to attach to an already-running instance:
+#   appId: C:\Git\maestro-playground\bin\Debug\net10.0-windows10.0.19041.0\win-x64\MaestroPlayground.exe
+#
+# Build the Android app first:
+#   dotnet build -f net10.0-android
+# Run:
 #   maestro test .maestro/weight-control.yaml
-appId: C:\Git\maestro-playground\bin\Debug\net10.0-windows10.0.19041.0\win-x64\MaestroPlayground.exe
+appId: com.maestro.playground
 ---
 # Weight Control UI Tests
 #
