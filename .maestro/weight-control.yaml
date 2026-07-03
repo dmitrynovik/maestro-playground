@@ -1,0 +1,44 @@
+# appId for a Windows unpackaged MAUI app.
+# Maestro uses the full exe path to launch the app, or the process name to
+# attach to an already-running instance.
+#
+# Two modes of use:
+#   Auto-launch (recommended): set appId to the full exe path below.
+#     Maestro will start the app before running the flow.
+#   Attach to running app: change appId to just "MaestroPlayground" (process
+#     name without .exe) and start the app manually first, then run:
+#       maestro test .maestro/weight-control.yaml
+#
+# Build the app first:
+#   dotnet build -f net10.0-windows10.0.19041.0
+# Run with auto-launch (default below):
+#   maestro test .maestro/weight-control.yaml
+appId: C:\Git\maestro-playground\bin\Debug\net10.0-windows10.0.19041.0\win-x64\MaestroPlayground.exe
+---
+# Weight Control UI Tests
+#
+# Scenario: Pressing "Weight On" sets the weight text box value to 5.
+#           Pressing "Weight Off" resets the weight text box value to 0.
+
+- launchApp
+
+# The Weight Control page is the home/launch page — no navigation needed.
+# Wait for the Blazor content to load inside the WebView2 control.
+- waitForAnimationToEnd:
+    timeout: 5000
+- assertVisible: "Weight Control"
+
+# --- Test 1: Weight On sets the value to 5 ---
+- tapOn: "Weight On"
+# Allow Blazor's synchronous state update to propagate and re-render the DOM.
+- waitForAnimationToEnd:
+    timeout: 2000
+# The read-only input (id="weightInput") now shows "5".
+- assertVisible: "5"
+
+# --- Test 2: Weight Off resets the value to 0 ---
+- tapOn: "Weight Off"
+- waitForAnimationToEnd:
+    timeout: 2000
+# The read-only input now shows "0".
+- assertVisible: "0"
