@@ -21,6 +21,13 @@
 
     <!-- Unpackaged: easier to F5 without Store provisioning -->
     <WindowsPackageType>None</WindowsPackageType>
+
+    <!-- The Playwright test harness lives under tests\ so it can reuse Home.razor without
+         pulling MAUI-only types into a plain net10.0 project. Exclude it from this project's
+         default item globs (Compile, RazorComponent, Content, etc. all honor
+         DefaultItemExcludes) so its files aren't compiled twice and its own
+         TargetFrameworks don't leak into this build. -->
+    <DefaultItemExcludes>$(DefaultItemExcludes);tests\**</DefaultItemExcludes>
   </PropertyGroup>
 
   <!-- Windows-specific -->

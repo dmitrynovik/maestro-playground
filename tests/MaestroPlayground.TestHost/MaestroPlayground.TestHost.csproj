@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>MaestroPlayground.TestHost</RootNamespace>
+    <!-- Test-only harness: not part of the shipping app, so keep it out of Debug/Release
+         solution builds that target Windows/Android (see solution build config). -->
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Reuse the real Home.razor from the MAUI app instead of copy/pasting it, so the
+         Playwright test exercises the exact same markup and @code logic that ships. -->
+    <RazorComponent Include="..\..\Components\Pages\Home.razor" Link="Components\Pages\Home.razor" />
+  </ItemGroup>
+
+  <!-- Microsoft.AspNetCore.Components.Web ships in the ASP.NET Core shared framework
+       (via Microsoft.NET.Sdk.Web), so no explicit PackageReference is needed. -->
+
+</Project>
