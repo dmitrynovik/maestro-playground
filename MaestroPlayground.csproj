@@ -21,6 +21,9 @@
 
     <!-- Unpackaged: easier to F5 without Store provisioning -->
     <WindowsPackageType>None</WindowsPackageType>
+
+    <!-- Keep the test projects' own files out of this project's default globs -->
+    <DefaultItemExcludes>$(DefaultItemExcludes);tests\**</DefaultItemExcludes>
   </PropertyGroup>
 
   <!-- Windows-specific -->
